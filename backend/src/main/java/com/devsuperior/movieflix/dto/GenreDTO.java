@@ -15,7 +15,6 @@ public class GenreDTO implements Serializable{
 	private Set<MovieDTO> movies = new HashSet<>();
 	
 	public GenreDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public GenreDTO(Long id, String name) {
