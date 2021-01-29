@@ -36,10 +36,11 @@ public class MovieResource {
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
 			@RequestParam(value = "orderBy", defaultValue = "title") String orderBy				
 			)
-	{		
-		PageRequest pageRequest = PageRequest.of(page, size,Direction.valueOf(direction), orderBy);
-		Page<MovieDTO> list = service.find(genreId, pageRequest);
+	{
+		
+		PageRequest pageRequest = PageRequest.of(page, size, Direction.valueOf(direction), orderBy);
+		Page<MovieDTO> list = service.findAllPaged(genreId, pageRequest);
 		
 		return ResponseEntity.ok().body(list);
-	}	
+	}
 }

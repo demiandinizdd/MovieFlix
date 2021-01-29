@@ -166,6 +166,9 @@ public class MovieResourceIT {
 					.contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isOk());
+		// "$.content" is not found when running App at "dev" environment
+		// However, it does exists in Postman get("/movies"). Apparently, 
+		// the App is working properly
 		result.andExpect(jsonPath("$.content").exists());
 		result.andExpect(jsonPath("$.totalElements").value(countMovies));		
 		Assertions.assertTrue(orderedByTitle(getMovies(result)));

@@ -33,10 +33,10 @@ public class MovieService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<MovieDTO> find(Long genreId, PageRequest pageRequest){			
+	public Page<MovieDTO> findAllPaged(Long genreId, PageRequest pageRequest){			
 		Genre genre = (genreId == 0) ? null : genreRepository.getOne(genreId);
 		
-		Page<Movie> list = repository.searchAll(genre, pageRequest);		
-		return list.map(x -> new MovieDTO(x));		
-	}
+		Page<Movie> list = repository.findMoviesGenre(genre, pageRequest);		
+		return list.map(x -> new MovieDTO(x));
+	}	
 }
