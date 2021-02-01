@@ -1,12 +1,13 @@
 import React from 'react';
-import './App.css';
+import Home from 'pages/Home';
+import './App.scss';
 
 function App() {
   return (
     <div>
-      <h1>
-        Hello MovieFlix!
-      </h1>
+      <>
+        <Home />
+      </>
     </div>
   );
 }
