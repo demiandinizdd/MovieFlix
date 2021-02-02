@@ -7,11 +7,11 @@ const WelcomeBack = () => {
     return (
         <div className="card-base welcome-content">
             <h1 className="welcome-title">Bem vindo de volta!</h1>
-            <Link to="/movies">
-                <div className="welcome-button">
+            <div className="welcome-button justify-content-center">
+                <Link to="/movies">
                     <ButtonIcon text="Ver lista de filmes" />
-                </div>
-            </Link>
+                </Link>
+            </div>
         </div>
     );
 }
