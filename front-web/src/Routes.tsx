@@ -16,12 +16,11 @@ const Routes = () => {
                     <Home />
                 </Route>
                 <Route path="/movies" exact>
-                    {/* <Movies /> */}
-                    <h1>Filmes</h1>
+                    <Movies />
                 </Route>
                 <Route path="/movies/:movieId">
+                    <h1>Detalhes do filme</h1>
                     {/* <MovieDetail /> */}
-                    <h1>Detalhes dos filmes</h1>
                 </Route>
             </Switch>
         </Router>

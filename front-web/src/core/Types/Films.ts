@@ -1,5 +1,5 @@
 export type FilmsResponse = {
-    content: Film[];
+    content: Movie[];
     totalPages: number;
 }
 
@@ -7,7 +7,7 @@ export type ReviewResponse = {
     contentReview: Review[];
 }
 
-export type Film = {
+export type Movie = {
     id: number;
     title:string;
     subTitle: string;
@@ -31,5 +31,5 @@ export type Review = {
 export type Genre={
     id: number,
     name: string,
-    movies?: Film[],
+    movies?: Movie[],
 }
