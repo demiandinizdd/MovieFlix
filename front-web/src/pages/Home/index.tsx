@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getAccessTokenDecoded } from 'core/utils/auth';
 import { useLocation } from 'react-router-dom';
 import { ReactComponent as MainImage } from 'core/assets/images/main-image.svg';
-import Login from './components/Login';
-import WelcomeBack from './components/WelcomeBack';
+import Login from '../Login';
+import WelcomeBack from '../Catalog/components/WelcomeBack';
 import './styles.scss';
 
 const Home = () => {

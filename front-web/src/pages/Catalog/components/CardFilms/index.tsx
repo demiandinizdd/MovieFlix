@@ -1,15 +1,12 @@
 import React from 'react';
-import { Movie } from '../../../../core/Types/Films';
+import { Movie } from 'core/types/Films';
 import './styles.css';
-
 
 type Props = {
     film: Movie;
 }
 
 const CardFilms = ({film}: Props) => {
-
-
     return (
         <div className="catalog-content-card">
             <img 
