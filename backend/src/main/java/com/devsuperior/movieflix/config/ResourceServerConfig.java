@@ -48,13 +48,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfig = new CorsConfiguration();
-		corsConfig.setAllowedOrigins(Arrays.asList("*"));
+		corsConfig.setAllowedOriginPatterns(Arrays.asList("*"));
 		corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
 		corsConfig.setAllowCredentials(true);
 		corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		
 		source.registerCorsConfiguration("/**", corsConfig);
+		
 		return source;
 	}
 
@@ -62,8 +62,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	public FilterRegistrationBean<CorsFilter> corsFilter() {
 		FilterRegistrationBean<CorsFilter> bean 
 			= new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
-		
 		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		
 		return bean;
 	}
 }

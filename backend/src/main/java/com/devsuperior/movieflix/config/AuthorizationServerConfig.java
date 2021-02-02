@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -20,7 +21,8 @@ import com.devsuperior.movieflix.components.JwtTokenEnhancer;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+	
 	@Value("${security.oauth2.client.client-id}")
 	private String clientId;
 	
@@ -29,21 +31,24 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Value("${jwt.duration}")
 	private Integer jwtDuration;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private JwtAccessTokenConverter accessTokenConerter;
+	private JwtAccessTokenConverter accessTokenConverter;
 	
 	@Autowired
-	private JwtTokenStore tokenStore;	
+	private JwtTokenStore tokenStore;
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	private JwtTokenEnhancer tokenEnhancer;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -56,17 +61,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.withClient(clientId)
 		.secret(passwordEncoder.encode(clientSecret))
 		.scopes("read", "write")
-		.authorizedGrantTypes("password")
-		.accessTokenValiditySeconds(jwtDuration);
+		.authorizedGrantTypes("password", "refresh_token")
+		.accessTokenValiditySeconds(jwtDuration)
+		.refreshTokenValiditySeconds(jwtDuration);
 	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+		
 		TokenEnhancerChain chain = new TokenEnhancerChain();
-		chain.setTokenEnhancers(Arrays.asList(accessTokenConerter, tokenEnhancer));
+		chain.setTokenEnhancers(Arrays.asList(accessTokenConverter, tokenEnhancer));
+		
 		endpoints.authenticationManager(authenticationManager)
 		.tokenStore(tokenStore)
-		.accessTokenConverter(accessTokenConerter)
-		.tokenEnhancer(chain);
+		.accessTokenConverter(accessTokenConverter)
+		.tokenEnhancer(chain)
+		.userDetailsService(userDetailsService);
 	}	
 }

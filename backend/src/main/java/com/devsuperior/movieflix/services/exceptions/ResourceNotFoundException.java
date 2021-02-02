@@ -1,9 +1,9 @@
 package com.devsuperior.movieflix.services.exceptions;
 
-public class ResourcesNotFoundException extends RuntimeException{
+public class ResourceNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	
-	public ResourcesNotFoundException(String msg) {
+	public ResourceNotFoundException(String msg) {
 		super(msg);
 	}
 }

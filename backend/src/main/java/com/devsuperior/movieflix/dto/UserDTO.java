@@ -19,13 +19,11 @@ public class UserDTO implements Serializable{
 	public UserDTO() {
 	}
 	
-	public UserDTO(Long id, @NotBlank(message = "Campo nome é obrigatório!") String name,
-			@Email(message = "Informe um e-mail válido!") String email) {
+	public UserDTO(Long id, String name, String email) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 	}
-
 	public UserDTO(User entity) {
 		id = entity.getId();
 		name = entity.getName();

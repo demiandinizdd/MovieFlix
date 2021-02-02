@@ -1,10 +1,10 @@
 package com.devsuperior.movieflix.services;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +14,10 @@ import com.devsuperior.movieflix.entities.Review;
 import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.repositories.MovieRepository;
 import com.devsuperior.movieflix.repositories.ReviewRepository;
-import com.devsuperior.movieflix.services.exceptions.ResourcesNotFoundException;
 
 @Service
 public class ReviewService {
+
 	@Autowired
 	private ReviewRepository repository;
 	
@@ -27,29 +27,23 @@ public class ReviewService {
 	@Autowired
 	private AuthService authService;
 
+	@PreAuthorize("hasAnyRole('VISITOR', 'MEMBER')")
 	@Transactional(readOnly = true)
-	public ReviewDTO findById(Long id) {
-		Optional<Review> obj = repository.findById(id);
-		
-		Review entity = obj.orElseThrow(() -> new ResourcesNotFoundException("Review não Encontrado"));
-		return new ReviewDTO(entity);
+	public List<ReviewDTO> findAll() {
+		List<Review> list = repository.findAll();
+		return list.stream().map(x -> new ReviewDTO(x)).collect(Collectors.toList());
 	}
-	
-	@Transactional(readOnly = true)
-	public Page<ReviewDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Review> list = repository.findAll(pageRequest);
-		return list.map(x -> new ReviewDTO(x));
-	}
-	
+
+	@PreAuthorize("hasAnyRole('MEMBER')")
 	@Transactional
 	public ReviewDTO insert(ReviewDTO dto) {
-		Movie movie = movieRepository.getOne(dto.getMovieId());
 		User user = authService.authenticated();
-		authService.validateSelfOrAdmin(user.getId());
-		Review entity = new Review();		
-		entity.setText(dto.getText());
-		entity.setMovie(movie);
-		entity.setUser(user);
+		Movie movie = movieRepository.getOne(dto.getMovieId());
+		
+		// TODO: VERITY WHY IT IS FALLING - DOES NOT THROW EXCEPTION!
+		authService.validateSelfOrMember(user.getId());
+		
+		Review entity = new Review(null, dto.getText(), user, movie);
 		entity = repository.save(entity);
 		
 		return new ReviewDTO(entity);
