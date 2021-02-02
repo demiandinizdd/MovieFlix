@@ -47,10 +47,10 @@ const Login = () => {
                 </div>
             )}
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                <div className="d-flex justify-content-center margin-bottom-30">
+                <div className="margin-bottom-30">
                     <input
                         type="email"
-                        className={`d-flex input-base input-email w-100 justify-content-center ${errors.username ? 'is-invalid' : ''}`}
+                        className={`input-base input-email ${errors.username ? 'form-control is-invalid' : ''}`}
                         placeholder="Email"
                         name="username"
                         ref={register({
@@ -62,31 +62,29 @@ const Login = () => {
                         })}
                     />
                     {errors.username && (
-                        <div className="d-block input-invalid">
+                        <div className="input-invalid row justify-content-start">
                             {errors.username.message}
-                        </div>
-                    )}
+                        </div>)
+                    }
                 </div>
                 <div>
                     <div className="input-password-container">
                         <input
                             type={showEye ? "text" : "password"}
                             placeholder="Senha"
-                            className={`d-flex input-base input-password w-100 ${errors.password ? 'is-invalid' : ''}`}
+                            className={`input-base input-password ${errors.password ? 'form-control is-invalid' : ''}`}
                             name="password"
                             ref={register({ required: "Campo Obrigatório"})}
                         />
                         <Link to="#" className="hide-show-password d-flex" onClick={togglePasswordVisiblity}>
-                            {showEye ? <FontAwesomeIcon className="d-flex align-self-center " icon={faEyeSlash} /> : <FontAwesomeIcon className="d-flex align-self-center" icon={faEye}/>}
+                            {showEye ? <FontAwesomeIcon className="d-flex align-self-center icon " icon={faEyeSlash} /> : <FontAwesomeIcon className="d-flex align-self-center icon " icon={faEye}/>}
                         </Link>
                     </div>
-                        {
-                            errors.password && (
-                                <div className="d-block input-invalid">
-                                        {errors.password.message}
-                                </div>
-                            )
-                        }
+                    {errors.password && (
+                        <div className="input-invalid row justify-content-start">
+                            {errors.password.message}
+                        </div>)
+                    }
                 </div>
                 <div className="login-button d-flex">
                     <ButtonIcon text="logar" />
