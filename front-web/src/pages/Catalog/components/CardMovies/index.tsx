@@ -1,12 +1,12 @@
 import React from 'react';
-import { Movie } from 'core/types/Films';
+import { Movie } from 'core/types/Movies';
 import './styles.css';
 
 type Props = {
     film: Movie;
 }
 
-const CardFilms = ({film}: Props) => {
+const CardMovies = ({film}: Props) => {
     return (
         <div className="catalog-content-card">
             <img 
@@ -21,4 +21,4 @@ const CardFilms = ({film}: Props) => {
     );
 };
 
-export default CardFilms;
+export default CardMovies;
