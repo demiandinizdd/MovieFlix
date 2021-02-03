@@ -74,9 +74,9 @@ const Catalog = () => {
                 {/* <FiltersMovies onSearch={filter => getFilms(filter)} /> */}
                 <div className="catalog-container-card">
                     {isLoading ? <MoviesCatalogLoaders /> : (
-                        moviesResponse?.content.map(film => (
-                            <Link to={`/movies/${film.id}`}>
-                                <CardMovies film={film} key={film.id} />
+                        moviesResponse?.content.map(movie => (
+                            <Link to={`/movies/${movie.id}`}>
+                                <CardMovies movie={movie} key={movie.id} />
                             </Link>
                         ))
                     )}
