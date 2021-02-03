@@ -11,33 +11,21 @@ import MoviesCatalogLoaders from './components/Loaders/MoviesCatalogLoaders';
 import CardMovies from './components/CardMovies';
 import './styles.css';
 
-// TODO: Pagination and Filters
-// import Pagination from 'core/components/Pagination';
+// TODO: Filters
+import Pagination from 'core/components/Pagination';
 // import FiltersMovies, {FilterForm} from './components/FiltersMovies';
 
 const Catalog = () => {
     const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
     const [isLoading, setIsLoading] = useState(false);
-    // const [activePage, setActivePage] = useState(0);
+    const [activePage, setActivePage] = useState(0);
     
-    // TODO FILTERS
     // const getMovie = useCallback((filter?: FilterForm) => {
-    //     const params = {
-    //         page: activePage,
-    //         size: 4,
-    //         genreId: filter?.genreId
-    //     }
-    //     setIsLoading(true);
-    //     makePrivateRequest({ url: '/movies', params })
-    //         .then(response => setMoviesResponse(response.data))
-    //         .finally(() => {
-    //             setIsLoading(false);
-    //         })
-    // }, [activePage]);
-
     const getMovie = useCallback(() => {
         const params = {
-            size: 4
+            page: activePage,
+            size: 4,
+            // genreId: filter?.genreId
         }
         setIsLoading(true);
         makePrivateRequest({ url: '/movies', params })
@@ -45,20 +33,7 @@ const Catalog = () => {
             .finally(() => {
                 setIsLoading(false);
             })
-    }, []);
-
-    // const getMovie = useCallback(() => {
-    //     const params = {
-    //         page: activePage,
-    //         size: 4
-    //     }
-    //     setIsLoading(true);
-    //     makePrivateRequest({ url: '/movies', params })
-    //         .then(response => setMoviesResponse(response.data))
-    //         .finally(() => {
-    //             setIsLoading(false);
-    //         })
-    // }, [activePage]);
+    }, [activePage]);
 
     useEffect(() => {
         getMovie();
@@ -71,7 +46,7 @@ const Catalog = () => {
             </Navbar>
             <div className="catalog-container">
                 {/* TODO FILTERS */}
-                {/* <FiltersMovies onSearch={filter => getFilms(filter)} /> */}
+                {/* <FiltersMovies onSearch={filter => getMovies(filter)} /> */}
                 <div className="catalog-container-card">
                     {isLoading ? <MoviesCatalogLoaders /> : (
                         moviesResponse?.content.map(movie => (
@@ -82,12 +57,11 @@ const Catalog = () => {
                     )}
                 </div>
             </div>
-            {/* TODO PAGINATION */}
-            {/* {filmsResponse && <Pagination
-                totalPages={filmsResponse.totalPages}
+            {moviesResponse && <Pagination
+                totalPages={moviesResponse.totalPages}
                 activePage={activePage}
                 onChange={page => setActivePage(page)}
-            />} */}
+            />}
         </>
     );
 };

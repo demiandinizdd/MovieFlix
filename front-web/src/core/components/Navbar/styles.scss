@@ -2,17 +2,16 @@
     height: 70px;
     color: #000;
     align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-left: 0;
-    margin-right: 0;
+    padding: 0 40px 0 40px;
+    left: 0;
+    top: 0;
 }
 
-.nav-logo-text {
+.logo-text {
     color: #000;
 }
 
-.nav-link {
+.link {
     width: 103px;
     border: 1px solid #000;
     box-sizing: border-box;
