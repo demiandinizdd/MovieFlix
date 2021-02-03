@@ -13,7 +13,7 @@ type LoginResponse = {
     userId: number;
 }
 
-export type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
+export type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER'
 
 type AccessToken = {
     exp: number;
@@ -23,14 +23,14 @@ type AccessToken = {
 
 export const saveSessionData = (loginResponse: LoginResponse) => {
     localStorage.setItem('authData', JSON.stringify(loginResponse));
-};
+}
 
 export const getSessionData = () => {
     const sessionData = localStorage.getItem('authData') ?? '{}';
     const parsedSessionData = JSON.parse(sessionData);
 
     return parsedSessionData as LoginResponse;
-};
+}
 
 export const isTokenValid = () => {
     const { exp } = getAccessTokenDecoded();

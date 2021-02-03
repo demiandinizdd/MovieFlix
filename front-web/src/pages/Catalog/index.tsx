@@ -15,12 +15,10 @@ import './styles.css';
 // import Pagination from 'core/components/Pagination';
 // import FiltersMovies, {FilterForm} from './components/FiltersMovies';
 
-
 const Catalog = () => {
-
     const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
     const [isLoading, setIsLoading] = useState(false);
-    const [activePage, setActivePage] = useState(0);
+    // const [activePage, setActivePage] = useState(0);
     
     // TODO FILTERS
     // const getMovie = useCallback((filter?: FilterForm) => {
@@ -39,7 +37,6 @@ const Catalog = () => {
 
     const getMovie = useCallback(() => {
         const params = {
-            page: activePage,
             size: 4
         }
         setIsLoading(true);
@@ -48,7 +45,20 @@ const Catalog = () => {
             .finally(() => {
                 setIsLoading(false);
             })
-    }, [activePage]);
+    }, []);
+
+    // const getMovie = useCallback(() => {
+    //     const params = {
+    //         page: activePage,
+    //         size: 4
+    //     }
+    //     setIsLoading(true);
+    //     makePrivateRequest({ url: '/movies', params })
+    //         .then(response => setMoviesResponse(response.data))
+    //         .finally(() => {
+    //             setIsLoading(false);
+    //         })
+    // }, [activePage]);
 
     useEffect(() => {
         getMovie();

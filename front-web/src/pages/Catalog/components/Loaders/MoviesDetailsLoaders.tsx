@@ -13,7 +13,6 @@ const MoviesDetailsLoaders = () => {
                 backgroundColor="#ecebeb"
                 foregroundColor="#6C6C6C"
             >
-
                 <rect x="0" y="0" rx="10" ry="10" width="1170" height="375" />
             </ContentLoader>
         </div>

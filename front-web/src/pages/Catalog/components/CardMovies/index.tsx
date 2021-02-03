@@ -3,22 +3,22 @@ import { Movie } from 'core/types/Movies';
 import './styles.css';
 
 type Props = {
-    film: Movie;
+    movie: Movie;
 }
 
-const CardMovies = ({film}: Props) => {
+const CardMovies = ({movie}: Props) => {
     return (
         <div className="catalog-content-card">
             <img 
-                src={film.imgUrl}
-                alt="film"
+                src={movie.imgUrl}
+                alt="Movie"
                 className="catalog-img"
             />
-            <div className={"catalog-title"}>{film.title}</div>
-            <span className={"catalog-ano"}>{film.year}</span>
-            <h3 className={"catalog-subTitle"}>{film.subTitle}</h3>
+            <div className={"catalog-title"}>{movie.title}</div>
+            <span className={"catalog-ano"}>{movie.year}</span>
+            <h3 className={"catalog-subTitle"}>{movie.subTitle}</h3>
         </div>
     );
-};
+}
 
 export default CardMovies;

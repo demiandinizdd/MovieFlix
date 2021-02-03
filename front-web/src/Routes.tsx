@@ -2,10 +2,10 @@ import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import NavBar from 'core/components/Navbar';
 import Home from './pages/Home';
-// TODO: MOVIES AND MovieDetails
+// TODO: MovieDetails
 // import MovieDetail from './pages/MovieDetail';
-// import Movies from './pages/Movies';
 import history from './core/utils/history';
+import Catalog from 'pages/Catalog';
 
 const Routes = () => {
     return (
@@ -16,7 +16,7 @@ const Routes = () => {
                     <Home />
                 </Route>
                 <Route path="/movies" exact>
-                    <Movies />
+                    <Catalog />
                 </Route>
                 <Route path="/movies/:movieId">
                     <h1>Detalhes do filme</h1>
@@ -25,6 +25,6 @@ const Routes = () => {
             </Switch>
         </Router>
     );
-};
+}
 
 export default Routes;
