@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { ReactComponent as MainImage } from 'core/assets/images/main-image.svg';
 import Navbar from 'core/components/Navbar';
 import Login from '../Login';
-import WelcomeBack from '../Catalog/components/WelcomeBack';
+import WelcomeBack from './components/WelcomeBack';
 import './styles.scss';
 
 const Home = () => {

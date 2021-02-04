@@ -4,6 +4,7 @@ import Select from 'react-select';
 import { Genre } from 'core/types/Movies';
 import { makePrivateRequest } from 'core/utils/request';
 import './styles.css';
+import { optionCSS } from 'react-select/src/components/Option';
 
 export type FilterForm = {
     genreId?: number;
@@ -19,7 +20,7 @@ const CatalogFilters = ({ onSearch }: Props) => {
 
     useEffect(() => {
         makePrivateRequest({ url: '/genres' })
-            .then(response => setGenres(response.data.content))
+            .then(response => setGenres(response.data));
     }, [])
 
     const handleChangeGenre = (genre: Genre) => {
@@ -29,18 +30,19 @@ const CatalogFilters = ({ onSearch }: Props) => {
 
     return (
         <div className="filters-container">
-            <div className="filters-text">
-                <Select options={genres}
-                    name="Genre"
-                    key={`select-${genre?.id}`}
-                    inputId="genries"
-                    getOptionLabel={(option: Genre) => option.name}
-                    getOptionValue={(option: Genre) => String(option.id)}
-                    classNamePrefix="catalog-select"
-                    placeholder="Gêneros"
-                    onChange={value => handleChangeGenre(value as Genre)}
-                />
-            </div>
+            <Select 
+                className="text-secondary"
+                data-actions-box="true"
+                options={genres}
+                name="Genre"
+                key={`select-${genre?.id}`}
+                inputId="genries"
+                getOptionLabel={(option: Genre) => option.name}
+                getOptionValue={(option: Genre) => String(option.id)}
+                classNamePrefix="catalog-select"
+                placeholder="Gênero"
+                onChange={value => handleChangeGenre(value as Genre)}
+            />
         </div>
     );
 }

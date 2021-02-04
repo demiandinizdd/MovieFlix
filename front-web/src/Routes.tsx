@@ -1,9 +1,7 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-// TODO: MovieDetails
-// import MovieDetail from './pages/MovieDetail';
 import history from './core/utils/history';
+import Home from './pages/Home';
 import Catalog from 'pages/Catalog';
 import MovieDetails from 'pages/Catalog/components/MovieDetails';
 

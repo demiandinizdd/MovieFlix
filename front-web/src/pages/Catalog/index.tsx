@@ -33,7 +33,7 @@ const Catalog = () => {
     }, [activePage]);
 
     useEffect(() => {
-        getMovies();
+        getMovies()
     }, [getMovies]);
 
     return (
@@ -54,6 +54,7 @@ const Catalog = () => {
                 </div>
             </div>
             {moviesResponse && <Pagination
+                key={activePage}
                 totalPages={moviesResponse.totalPages}
                 activePage={activePage}
                 onChange={page => setActivePage(page)}
