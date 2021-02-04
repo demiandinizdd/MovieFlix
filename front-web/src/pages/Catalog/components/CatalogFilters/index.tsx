@@ -18,7 +18,7 @@ const CatalogFilters = ({ onSearch }: Props) => {
     const [genre, setGenre] = useState<Genre>();
 
     useEffect(() => {
-        makePrivateRequest({ url: '/genres/pagination' })
+        makePrivateRequest({ url: '/genres' })
             .then(response => setGenres(response.data.content))
     }, [])
 

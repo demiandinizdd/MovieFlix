@@ -9,6 +9,7 @@ const MoviesCatalogLoaders = () => {
     <>
       {loaderItems.map(item => (
         <ContentLoader
+          key={item.toString()}
           speed={1}
           width={250}
           height={380}

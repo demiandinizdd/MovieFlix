@@ -7,19 +7,18 @@ import ButtonLogout from 'core/components/ButtonLogout';
 import Navbar from 'core/components/Navbar';
 import { MoviesResponse} from 'core/types/Movies';
 import { makePrivateRequest } from 'core/utils/request';
+import Pagination from 'core/components/Pagination';
 import MoviesCatalogLoaders from './components/Loaders/MoviesCatalogLoaders';
 import CardMovies from './components/CardMovies';
 import CatalogFilters, {FilterForm} from './components/CatalogFilters';
 import './styles.css';
-
-import Pagination from 'core/components/Pagination';
 
 const Catalog = () => {
     const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
     
-    const getMovie = useCallback((filter?: FilterForm) => {
+    const getMovies = useCallback((filter?: FilterForm) => {
         const params = {
             page: activePage,
             size: 8,
@@ -34,8 +33,8 @@ const Catalog = () => {
     }, [activePage]);
 
     useEffect(() => {
-        getMovie();
-    }, [getMovie]);
+        getMovies();
+    }, [getMovies]);
 
     return (
         <>
@@ -43,7 +42,7 @@ const Catalog = () => {
                 <ButtonLogout />
             </Navbar>
             <div className="catalog-container">
-                <CatalogFilters onSearch={filter => getMovie(filter)} />
+                <CatalogFilters onSearch={filter => getMovies(filter)} />
                 <div className="catalog-container-card">
                     {isLoading ? <MoviesCatalogLoaders /> : (
                         moviesResponse?.content.map(movie => (
