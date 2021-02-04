@@ -2,7 +2,7 @@ import React from "react";
 import ContentLoader from 'react-content-loader'
 import './styles.css';
 
-const MovieCommentLoaders = () => {
+const MovieCommentsLoaders = () => {
   return (
     <div className="loaders-details">
       <ContentLoader
@@ -19,4 +19,4 @@ const MovieCommentLoaders = () => {
   );
 }
 
-export default MovieCommentLoaders;
+export default MovieCommentsLoaders;

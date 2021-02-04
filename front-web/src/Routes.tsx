@@ -5,6 +5,7 @@ import Home from './pages/Home';
 // import MovieDetail from './pages/MovieDetail';
 import history from './core/utils/history';
 import Catalog from 'pages/Catalog';
+import MovieDetails from 'pages/Catalog/components/MovieDetails';
 
 const Routes = () => {
     return (
@@ -17,8 +18,7 @@ const Routes = () => {
                     <Catalog />
                 </Route>
                 <Route path="/movies/:movieId">
-                    <h1>Detalhes do filme</h1>
-                    {/* <MovieDetail /> */}
+                    <MovieDetails />
                 </Route>
             </Switch>
         </Router>
