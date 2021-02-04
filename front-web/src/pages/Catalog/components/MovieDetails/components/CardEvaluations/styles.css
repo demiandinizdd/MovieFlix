@@ -1,9 +1,10 @@
 .evaluations-container {
-    width: 1170px;
-    height: 580px;
-    padding-top: 20px;
-    margin-top: 15px;
-    margin-left: 110px;
+    width: 72.5%;
+    height: 600px;
+    margin-top: 1%;
+    margin-left: 7%;
+    padding: 0.5% 1.5% 0.5% 1.5%;
+    display: block;
     background: #6C6C6C;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -13,13 +14,11 @@
     color: #FFC700;
     width: 15px;
     height: 15px;
-    margin-top: 20px;
-    margin-left: 35px;
+    margin: 1.3% 0 1.5% 1%;
 }
 
 .evaluations-name {
-    margin-top: 15px;
-    margin-left: 20px;
+    margin: 1% 1% 0 1%;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -29,24 +28,26 @@
 }
 
 .evaluations-form {
-    width: 1131px;
-    height: 50px;
-    margin-left: 15px;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    margin-top: -1%;
+    padding: 0 0.5% 0 0.5%;
     border: 1px solid #E1E1E1;
     box-sizing: border-box;
     border-radius: 20px;
+    scroll-behavior: auto;
 }
 
 .evaluations-text {
-    width: 1090px;
-    height: 50px;
-    margin-top: 15px;
-    margin-left: 20px;
+    display: block;
+    height: 60px;
+    width: 90%;
+    padding: 0 0.5% 0 1.5%;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
-    text-align: justify;
     letter-spacing: -0.015em;
     color: #9E9E9E;
 }

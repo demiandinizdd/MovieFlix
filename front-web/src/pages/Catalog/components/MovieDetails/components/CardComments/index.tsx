@@ -48,8 +48,8 @@ const CardComments = ({ id }: ParamsType) => {
                     rows={10}
                     ref={register({ required: "Avaliação deve ser preenchida" })}
                 />
-                <button className="comment-btn">
-                    <h3 className="comment-btn-text">salvar avaliação</h3>
+                <button className="comment-btn d-flex justify-content-center">
+                    <h3 className="comment-btn-text d-flex justify-content-center">salvar avaliação</h3>
                 </button>
             </form>
         </>

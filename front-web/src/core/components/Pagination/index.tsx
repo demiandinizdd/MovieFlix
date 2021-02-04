@@ -10,9 +10,16 @@ type Props = {
 
 const Pagination = ( {totalPages, activePage, onChange} :Props) => {
     const items = generateList(totalPages);
+    var showPage = "pagination-container ";
+    
+    if (totalPages === 1) {
+        showPage += "d-none " }
+    else { 
+        showPage += "d-flex"
+    };
 
     return (
-        <div className="pagination-container">
+        <div className={showPage}>
             {items.map(item => (
                 <div
                     key = {item}

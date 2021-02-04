@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ButtonLogout from 'core/components/ButtonLogout';
 import Navbar from 'core/components/Navbar';
 import { MoviesResponse} from 'core/types/Movies';
@@ -20,7 +20,7 @@ const Catalog = () => {
     
     const getMovies = useCallback((page?: Number, filter?: FilterForm) => {
         const params = {
-            page: (page===null || page===0) ? 0 : activePage,
+            page: (page === null || page === 0 || filter) ? 0 : activePage,
             size: 8,
             genreId: filter?.genreId
         }
@@ -29,8 +29,8 @@ const Catalog = () => {
             .then(response => setMoviesResponse(response.data))
             .finally(() => {
                 setIsLoading(false);
-            })
-    }, [activePage]);
+            });
+        }, [activePage]);
 
     useEffect(() => {
         getMovies()
@@ -42,7 +42,7 @@ const Catalog = () => {
                 <ButtonLogout />
             </Navbar>
             <div className="catalog-container">
-                <CatalogFilters onSearch={filter => getMovies(0, filter)} />
+                <CatalogFilters onSearch={filter => getMovies(1, filter)} />
                 <div className="catalog-container-card">
                     {isLoading ? <MoviesCatalogLoaders /> : (
                         moviesResponse?.content.map(movie => (
