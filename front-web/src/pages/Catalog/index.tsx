@@ -18,9 +18,9 @@ const Catalog = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
     
-    const getMovies = useCallback((filter?: FilterForm) => {
+    const getMovies = useCallback((page?: Number, filter?: FilterForm) => {
         const params = {
-            page: activePage,
+            page: (page===null || page===0) ? 0 : activePage,
             size: 8,
             genreId: filter?.genreId
         }
@@ -42,7 +42,7 @@ const Catalog = () => {
                 <ButtonLogout />
             </Navbar>
             <div className="catalog-container">
-                <CatalogFilters onSearch={filter => getMovies(filter)} />
+                <CatalogFilters onSearch={filter => getMovies(0, filter)} />
                 <div className="catalog-container-card">
                     {isLoading ? <MoviesCatalogLoaders /> : (
                         moviesResponse?.content.map(movie => (
