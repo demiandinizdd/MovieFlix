@@ -9,23 +9,21 @@ import { MoviesResponse} from 'core/types/Movies';
 import { makePrivateRequest } from 'core/utils/request';
 import MoviesCatalogLoaders from './components/Loaders/MoviesCatalogLoaders';
 import CardMovies from './components/CardMovies';
+import CatalogFilters, {FilterForm} from './components/CatalogFilters';
 import './styles.css';
 
-// TODO: Filters
 import Pagination from 'core/components/Pagination';
-// import FiltersMovies, {FilterForm} from './components/FiltersMovies';
 
 const Catalog = () => {
     const [moviesResponse, setMoviesResponse] = useState<MoviesResponse>();
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
     
-    // const getMovie = useCallback((filter?: FilterForm) => {
-    const getMovie = useCallback(() => {
+    const getMovie = useCallback((filter?: FilterForm) => {
         const params = {
             page: activePage,
             size: 8,
-            // genreId: filter?.genreId
+            genreId: filter?.genreId
         }
         setIsLoading(true);
         makePrivateRequest({ url: '/movies', params })
@@ -45,8 +43,7 @@ const Catalog = () => {
                 <ButtonLogout />
             </Navbar>
             <div className="catalog-container">
-                {/* TODO FILTERS */}
-                {/* <FiltersMovies onSearch={filter => getMovies(filter)} /> */}
+                <CatalogFilters onSearch={filter => getMovie(filter)} />
                 <div className="catalog-container-card">
                     {isLoading ? <MoviesCatalogLoaders /> : (
                         moviesResponse?.content.map(movie => (
