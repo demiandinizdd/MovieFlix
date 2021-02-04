@@ -15,7 +15,7 @@ const CardMovies = ({movie}: Props) => {
                 className="catalog-img"
             />
             <div className={"catalog-title"}>{movie.title}</div>
-            <span className={"catalog-ano"}>{movie.year}</span>
+            <span className={"catalog-year"}>{movie.year}</span>
             <h3 className={"catalog-subTitle"}>{movie.subTitle}</h3>
         </div>
     );

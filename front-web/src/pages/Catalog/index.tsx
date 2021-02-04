@@ -24,7 +24,7 @@ const Catalog = () => {
     const getMovie = useCallback(() => {
         const params = {
             page: activePage,
-            size: 4,
+            size: 8,
             // genreId: filter?.genreId
         }
         setIsLoading(true);
