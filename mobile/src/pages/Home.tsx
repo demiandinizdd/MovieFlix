@@ -17,7 +17,7 @@ const Home: React.FC = () => {
             <TouchableOpacity
                 style = { theme.primaryButton }
                 activeOpacity = {0.8}
-                //TODO onPress = {() => navigation.navigate("Login")}
+                onPress = {() => navigation.navigate("Login")}
             >
                 <Text style = { text.primaryText }>
                     fazer login

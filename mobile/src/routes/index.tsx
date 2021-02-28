@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import leftArrow from "../assets/leftArrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Home } from "../pages";
+import { Home, Login } from "../pages";
 import { colors, nav, text } from "../styles";
 
 const Stack = createStackNavigator();
@@ -59,6 +59,7 @@ const Routes: React.FC = () => {
             }}
         >
             <Stack.Screen name = "Home" component = { Home } />
+            <Stack.Screen name = "Login" component = { Login } />
         </Stack.Navigator>
     )
 };
