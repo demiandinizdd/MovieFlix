@@ -113,7 +113,7 @@ const theme = StyleSheet.create({
         alignItems: "center",
         backgroundColor: colors.gray
     },
-    draw: {
+    mainImage: {
         width: 340,
         height: 262
     },
