@@ -11,3 +11,21 @@ const colors = {
     mediumGray: "#BFBFBF",
     lightGray: "#CDCDCD"
 };
+
+const nav = ({
+    container: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    leftText: {
+        color: colors.black,
+        fontSize: 18,
+        fontWeight: "bold",
+        marginLeft: 20
+    },
+    backArrow: {
+        marginLeft: 20
+    }
+});
+
+export { colors, nav };
