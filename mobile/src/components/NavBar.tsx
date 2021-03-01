@@ -29,7 +29,7 @@ const NavBar: React.FC = () => {
             {(authenticated && (route.name !== "Home") || (route.name !== "Login"))
                 ? (
                     <TouchableOpacity
-                        onPress = {() => logout()}
+                        onPress = {() => doLogout()}
                         style = {nav.logoutBtn}
                     >
                         <Text style = {text.logoutText}>SAIR</Text>

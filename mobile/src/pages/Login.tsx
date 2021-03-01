@@ -4,8 +4,9 @@ import { Text, View, TouchableOpacity, Image, TextInput } from "react-native";
 import eyesClosed from "../assets/eyes-closed.png";
 import eyesOpened from "../assets/eyes-opened.png";
 import arrow from "../assets/arrow.png";
-import { isAuthenticated, doLogin } from "../services/auth";
+import { doLogin, isAuthenticated } from "../services/auth";
 import { theme, text } from "../styles";
+import Toast from "react-native-tiny-toast";
 
 const Login: React.FC = () => {
     const navigation = useNavigation();
@@ -13,14 +14,14 @@ const Login: React.FC = () => {
     const [userFetchData, setUserFetchData] = useState({});
     const [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
-    useEffect(() => {
-        isAuthenticated();
-    }, []);
-    
     async function handleLogin() {
-        const data = await doLogin(userInfo);
-        setUserFetchData(data);
-        navigation.navigate("Movies");
+        const data = await doLogin(userInfo)
+        .then(() => {
+            setUserFetchData(data);
+            navigation.navigate("Movies")})
+        .catch((e) => {
+            Toast.show("Erro ao efetuar login.")
+        })
     };
     
     return (
