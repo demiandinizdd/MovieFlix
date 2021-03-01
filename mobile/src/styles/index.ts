@@ -62,7 +62,7 @@ const text = StyleSheet.create({
         fontWeight: "bold",
         color: colors.primary
     },
-    moveViewTextDetails: {
+    movieViewTextDetails: {
         fontSize: 16,
         fontWeight: "bold",
         color: colors.white,

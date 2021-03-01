@@ -14,3 +14,36 @@ export async function userToken() {
     
     return token;
 };
+
+export async function getMovies() {
+    const authToken = await userToken();
+    const res = api.get(`/movies?direction=ASC&orderBy=title`, {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+        }
+    });
+    
+    return res;
+};
+
+export async function getMovie(id: number) {
+    const authToken = await userToken();
+    const res = api.get(`/movies/${id}`, {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+        }
+    });
+    
+    return res;
+};
+
+export async function getGenres() {
+    const authToken = await userToken();
+    const res = api.get(`/genres?direction=ASC&orderBy=name`, {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+        }
+    });
+    
+    return res;
+};
