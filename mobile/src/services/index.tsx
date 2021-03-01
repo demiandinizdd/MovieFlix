@@ -26,7 +26,7 @@ export async function getMovies() {
     return res;
 };
 
-export async function getMovie(id: number) {
+export async function getMovieById(id: number) {
     const authToken = await userToken();
     const res = api.get(`/movies/${id}`, {
         headers: {

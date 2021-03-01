@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home, Login, Movies } from "../pages";
+import { Home, Login, Movies, MovieDetail } from "../pages";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import leftArrow from "../assets/leftArrow.png";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -80,8 +80,7 @@ const Routes: React.FC = () => {
             <Stack.Screen name = "Home" component = { Home } />
             <Stack.Screen name = "Login" component = { Login } />
             <Stack.Screen name = "Movies" component = { Movies } />
-            {/* TODO */}
-            {/* <Stack.Screen name = "MovieDetail" component = { MovieDetail } /> */}
+            <Stack.Screen name = "MovieDetail" component = { MovieDetail } />
         </Stack.Navigator>
     )
 };

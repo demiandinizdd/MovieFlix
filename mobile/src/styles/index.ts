@@ -99,6 +99,14 @@ const text = StyleSheet.create({
         fontSize: 16,
         color: colors.subTitle,
         textAlign: "justify"
+    },
+    movieDetailEvaluationText: {
+        color: colors.black,
+        fontSize: 16,
+        fontWeight: "700",
+        textTransform:'uppercase',
+        lineHeight: 22,
+        textAlign: "justify"
     }
 });
 
@@ -246,13 +254,31 @@ const theme = StyleSheet.create({
         backgroundColor: colors.gray,
         borderRadius: 10,
         paddingHorizontal: 20,
-        paddingVertical: 15
+        paddingVertical: 15,
+        justifyContent: "center"
     },
     movieDetailInput: {
         height: 97, 
         backgroundColor: colors.white,
         paddingHorizontal: 10,
         borderRadius: 10
+    },
+    btnEvaluation: {
+        width: "100%",
+        height: 50,
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.primary,
+        borderRadius: 10,
+        marginTop: 15,
+        paddingHorizontal: 20
+    },
+    star: {
+        width: 15,
+        height: 15,
+        marginLeft: 40,
+        marginTop: 22
     }
 });
 
