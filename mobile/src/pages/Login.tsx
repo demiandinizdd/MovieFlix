@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity, Image, TextInput } from "react-native";
 import eyesClosed from "../assets/eyes-closed.png";
 import eyesOpened from "../assets/eyes-opened.png";
 import arrow from "../assets/arrow.png";
+import { isAuthenticated, doLogin } from "../services/auth";
 import { theme, text } from "../styles";
 
 const Login: React.FC = () => {
@@ -12,16 +13,14 @@ const Login: React.FC = () => {
     const [userFetchData, setUserFetchData] = useState({});
     const [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
-    // TODO
-    // useEffect(() => {
-    //     isAuthenticated();
-    // }, []);
+    useEffect(() => {
+        isAuthenticated();
+    }, []);
     
     async function handleLogin() {
-        // TODO
-        // const data = await login(userInfo);
-        // setUserFetchData(data);
-        // navigation.navigate("Movies");
+        const data = await doLogin(userInfo);
+        setUserFetchData(data);
+        navigation.navigate("Movies");
     };
     
     return (
