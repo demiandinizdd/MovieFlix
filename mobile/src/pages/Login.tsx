@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, Image, TextInput } from "react-native";
 import eyesClosed from "../assets/eyes-closed.png";
 import eyesOpened from "../assets/eyes-opened.png";
 import arrow from "../assets/arrow.png";
-import { doLogin, isAuthenticated } from "../services/auth";
+import { doLogin } from "../services/auth";
 import { theme, text } from "../styles";
 import Toast from "react-native-tiny-toast";
 

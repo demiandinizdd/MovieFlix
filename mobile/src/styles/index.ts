@@ -107,6 +107,17 @@ const text = StyleSheet.create({
         textTransform:'uppercase',
         lineHeight: 22,
         textAlign: "justify"
+    },
+    movieReviewInput: {
+        height: 100,
+        fontSize: 16,
+        fontWeight: "400",
+        lineHeight: 22,        
+        textAlignVertical: "top",
+        color: colors.gray,
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        padding: 10
     }
 });
 
@@ -210,22 +221,27 @@ const theme = StyleSheet.create({
     },
     // Search
     searchInputContainer: {
-        width: 374,
+        width: "100%",
         backgroundColor: colors.gray,
         padding: 20,
         borderRadius: 10,
-        marginBottom: 18
+        marginBottom: 18,
+        flexDirection: "row",
+        alignItems: "center"
     },
     searchInput: {
+        width: "100%",
+        maxWidth: "100%",
         fontSize: 16,
+        fontWeight: "400",
         color: colors.white,
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
         borderWidth: 1,
         borderColor: colors.white,
         borderRadius: 10,
-        padding: 15
+        padding: 15,
+        marginRight: -35
+    },
+    filterIcon: {
     },
     // Movie Detail
     containerMovieDetail: {
@@ -249,12 +265,10 @@ const theme = StyleSheet.create({
         borderColor: colors.borderColor
     },
     movieDetailInputContainer: {
-        marginTop: 18,
-        marginBottom: 18,
+        marginVertical: 18,
         backgroundColor: colors.gray,
         borderRadius: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 15,
+        padding: 20,
         justifyContent: "center"
     },
     movieDetailInput: {
@@ -276,9 +290,7 @@ const theme = StyleSheet.create({
     },
     star: {
         width: 15,
-        height: 15,
-        marginLeft: 40,
-        marginTop: 22
+        height: 15
     }
 });
 

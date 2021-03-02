@@ -1,6 +1,8 @@
 import React from "react";
-import { View, TextInput } from "react-native";
-import { theme } from "../styles";
+import { View, TextInput, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import filterArrow from "../assets/filter-arrow.png";
+import { colors, theme } from "../styles";
 
 interface SearchProps {
     placeholder: string;
@@ -10,14 +12,18 @@ interface SearchProps {
 
 const SearchInput: React.FC<SearchProps> = ({ search, setSearch, placeholder }) => {
     return (
-        <View style = {theme.searchInputContainer}>
+        <TouchableOpacity style = { theme.searchInputContainer }>
             <TextInput
-                style = {theme.searchInput} 
-                placeholder = {placeholder} 
+                style = { theme.searchInput }
+                placeholderTextColor = { colors.white }
+                placeholder = {placeholder}
                 value = {search} 
                 onChangeText = {text => setSearch(text)}
             />
-        </View>
+            <View style = { theme.filterIcon }>
+                <Image source = { filterArrow }/>
+            </View>
+        </TouchableOpacity>
     )
 };
 

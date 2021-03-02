@@ -48,8 +48,10 @@ const MovieDetail = ({
                         </ScrollView>
                     </View>
                     <View style = { theme.movieDetailInputContainer }>
-                        <TextInput
-                            style = { theme.movieDetailInput }
+                        <TextInput style = { text.movieReviewInput }
+                            placeholder = "Deixe aqui sua avaliação"
+                            multiline = {true}
+                            numberOfLines = {3}
                         />
                         <TouchableOpacity style = { theme.btnEvaluation }>
                             <Text style = { text.movieDetailEvaluationText }>salvar avaliação</Text>
