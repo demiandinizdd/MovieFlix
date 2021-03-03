@@ -100,7 +100,7 @@ const text = StyleSheet.create({
         color: colors.subTitle,
         textAlign: "justify"
     },
-    movieDetailEvaluationText: {
+    movieDetailSaveText: {
         color: colors.black,
         fontSize: 16,
         fontWeight: "700",
@@ -118,6 +118,32 @@ const text = StyleSheet.create({
         backgroundColor: colors.white,
         borderRadius: 10,
         padding: 10
+    },
+    movieReviewTitle: {
+        marginTop: 10,
+        marginLeft: 25,
+        color: colors.white,
+        fontSize: 22,
+        lineHeight: 30,
+        fontWeight: "700",
+        textAlign: "left"
+    },
+    reviewUserName: {
+        marginTop:15,
+        marginLeft: 20,
+        fontSize: 16,
+        lineHeight: 30,
+        fontWeight: "700",
+        color: colors.white
+    },
+    reviewComment: {
+        marginTop: 13,
+        marginLeft: 20,
+        textAlign: "justify",
+        color: colors.mediumGray,
+        fontSize: 16,
+        lineHeight: 22,
+        fontWeight: "400"
     }
 });
 
@@ -296,7 +322,7 @@ const theme = StyleSheet.create({
         borderColor: colors.borderColor
     },
     movieDetailInputContainer: {
-        marginVertical: 18,
+        marginVertical: 20,
         backgroundColor: colors.gray,
         borderRadius: 10,
         padding: 20,
@@ -321,7 +347,23 @@ const theme = StyleSheet.create({
     },
     star: {
         width: 15,
-        height: 15
+        height: 15,
+        marginLeft: 40,
+        marginTop: 22
+    },
+    reviewContent:{
+        flexDirection: 'row'
+    },
+    reviewComment: {
+        width: "85%",
+        height: 70,
+        marginLeft: 25,
+        marginTop: 5,
+        borderWidth: 1,
+        borderColor: colors.white,
+        borderRadius: 10,
+        marginBottom: 10,
+        padding: 10
     }
 });
 

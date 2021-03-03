@@ -47,3 +47,14 @@ export async function getGenres() {
     
     return res;
 };
+
+export async function createReview(data: object) {
+    const authToken = await userToken();
+    const res = api.post(`/reviews`, data, {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+        }
+    });
+    
+    return res;
+};

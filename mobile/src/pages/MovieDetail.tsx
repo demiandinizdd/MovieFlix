@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, ActivityIndicator, ScrollView, Image, TextInput, TouchableOpacity } from "react-native";
+import { createReview, getMovieById } from "../services";
+import star from "../assets/star.png";
+import Toast from "react-native-tiny-toast";
 import { text, theme } from "../styles";
-import { getMovieById } from "../services";
 
 const MovieDetail = ({
     route: {
@@ -17,12 +19,30 @@ const MovieDetail = ({
         genre: [],
         reviews: []
     });
+    const [newUserReview, setNewUserReview] = useState({
+        id: 0,
+        text: "",
+        // TODO GET USER LOGGED ID
+        userId: 0,
+        movieId: movie.id
+    });
     const [loading, setLoading] = useState(false);
 
     async function loadMovieData() {
         setLoading(true);
         const res = await getMovieById(id);
         setMovie(res.data);
+        setLoading(false);
+    };
+    
+    async function saveReview() {
+        try {
+            setLoading(true),
+            await createReview(newUserReview),
+            Toast.showSuccess('Obrigado pelo seu Comentário!');
+        } catch (res) {
+            Toast.show('Erro ao enviar seu comentário! Por favor, tente novamente.');
+        }
         setLoading(false);
     };
 
@@ -32,9 +52,7 @@ const MovieDetail = ({
     
     return (
         <ScrollView style={theme.containerMovieDetail}>
-            {loading ? (
-                <ActivityIndicator size="large" />)
-            : (
+            {loading ? (<ActivityIndicator size="large" />) : (
                 <View>
                     <View style = { theme.contentMovieDetail }>
                         <Text style = { text.movieDetailTitle }>{movie.title}</Text>
@@ -52,11 +70,34 @@ const MovieDetail = ({
                             placeholder = "Deixe aqui sua avaliação"
                             multiline = {true}
                             numberOfLines = {3}
+                            onChangeText={(e) => {
+                                const newUserReview = { ...newUserReview };
+                                newUserReview.text = e;
+                                setNewUserReview(newUserReview);
+                            }}
                         />
-                        <TouchableOpacity style = { theme.btnEvaluation }>
-                            <Text style = { text.movieDetailEvaluationText }>salvar avaliação</Text>
+                        <TouchableOpacity
+                            style = { theme.btnEvaluation }
+                            onPress = {() => saveReview()}
+                        >
+                            <Text style = { text.movieDetailSaveText }>salvar avaliação</Text>
                         </TouchableOpacity>
                     </View>
+                    {movie.reviews.length > 0 &&
+                    <ScrollView style={theme.movieContainer}>
+                        <Text style={text.movieReviewTitle}>Avaliações</Text>
+                        {movie.reviews.map(review => (
+                            <>
+                                <View style={theme.reviewContent} key={movie.id+review.id}>
+                                    <Image style={theme.star} source={star} />
+                                    <Text style={text.reviewUserName}>{review.userName}</Text>
+                                </View>
+                                <View style={theme.reviewComment}>
+                                    <Text style={text.reviewComment}>{review.text}</Text>
+                                </View>
+                            </>
+                        ))}
+                    </ScrollView>}
                 </View>)
             }
         </ScrollView>
