@@ -7,8 +7,7 @@ const MovieDetail = ({
     route: {
         params: { id },
     }}) => {
-    
-        const [movie, setMovie] = useState({
+    const [movie, setMovie] = useState({
         id: null,
         title: null,
         subTitle: null,
@@ -30,7 +29,7 @@ const MovieDetail = ({
     useEffect(() => {
         loadMovieData();
     }, []);
-
+    
     return (
         <ScrollView style={theme.containerMovieDetail}>
             {loading ? (
@@ -47,6 +46,7 @@ const MovieDetail = ({
                             <Text style = { text.movieDetailSynopsisText }>{movie.synopsis}</Text>
                         </ScrollView>
                     </View>
+                    {/* TODO VERIFY IF USER HAS ADMIN HOLE BEFORE RANDERING */}
                     <View style = { theme.movieDetailInputContainer }>
                         <TextInput style = { text.movieReviewInput }
                             placeholder = "Deixe aqui sua avaliação"

@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { theme, text } from "../styles";
 
+// TODO REVIEW INTERFACES
 interface MovieProps {
     id: number,
     title: string,

@@ -22,19 +22,18 @@ const Movies: React.FC = () => {
 
     const data = search.length > 0
     ? movies.filter((movie) =>
-        movie.title.toLowerCase().includes(search.toLowerCase())
+        movie.genre.includes(search)
     ) : movies;
 
     return (
         <ScrollView contentContainerStyle = { theme.scrollContainer }>
             <SearchInput
                 placeholder = "Gênero"
-                search = { search }
-                setSearch = { setSearch }
+                search = {search}
+                setSearch = {setSearch}
             />
-            {loading
-                ? (<ActivityIndicator size="large" />)
-                : (data.map((movie) => (
+            {loading ? (<ActivityIndicator size="large" />) :
+                (data.map((movie) => (
                     <MovieCard {...movie} key={movie.id} />
                 )))
             }

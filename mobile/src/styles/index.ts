@@ -243,6 +243,37 @@ const theme = StyleSheet.create({
     },
     filterIcon: {
     },
+    modalContainer: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#00000033",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    modalContent: {
+        width: 300,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "30%",
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        padding: 20,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+    },
+    modalItem: {
+        width: "100%",
+        backgroundColor: colors.lightGray,
+        padding: 10,
+        marginVertical: 5,
+        borderRadius: 5
+    },
     // Movie Detail
     containerMovieDetail: {
         width: "100%",
