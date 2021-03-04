@@ -3,6 +3,25 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { theme, text } from "../styles";
 
+interface GenreProps {
+    id: number,
+    name: string,
+};
+
+interface UserProps {
+    id: number,
+    name: string,
+    email: string,
+};
+
+interface ReviewProps {
+    id: number,
+    text: string,
+    userId: number,
+    movieId: number,
+    user: UserProps,
+};
+
 interface MovieProps {
     id: number,
     title: string,
@@ -14,26 +33,7 @@ interface MovieProps {
     reviews: ReviewProps,
 };
 
-interface GenreProps {
-    id: number,
-    name: string,
-};
-
-interface ReviewProps {
-    id: number,
-    text: string,
-    userId: number,
-    movieId: number,
-    user: UserProps,
-};
-
-interface UserProps {
-    id: number,
-    name: string,
-    email: string,
-};
-
-const MovieCard: React.FC<MovieProps> = ({ id, title, subTitle, year, imgUrl, synopsis, genre, reviews }) => {
+const MovieCard: React.FC<MovieProps> = ({ id, title, subTitle, year, imgUrl }) => {
     const navigation = useNavigation();
     return (
         <View style = {theme.movieContainer}>

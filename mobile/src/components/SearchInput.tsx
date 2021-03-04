@@ -31,6 +31,7 @@ const SearchInput: React.FC<SearchProps> = ({ placeholder, search, setSearch }) 
         <View>
             {loading ? (<ActivityIndicator size="large" />) : (
             <View>
+                {/* TODO SOLVE BUG WHEN RENDERING MODAL */}
                 <Modal
                     visible = {showGenres}
                     animationType = "fade"

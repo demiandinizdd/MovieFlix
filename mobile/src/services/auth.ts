@@ -1,7 +1,6 @@
-import { api, TOKEN } from "./index";
-import queryString from "query-string";
+import { api, saveSessionData, TOKEN } from "./index";
+import queryString, { parse } from "query-string";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useCallback } from "react";
 
 interface AuthProps {
     username: string;
@@ -29,16 +28,16 @@ export async function isAuthenticated() {
 };
 
 export async function doLogin(userInfo: AuthProps) {
-    const authenticated = await isAuthenticated();
     const data = queryString.stringify({ ...userInfo, grant_type: "password" });
     const result = await api.post('/oauth/token', data, {
         headers: {
-            Authorization: TOKEN,
+            Authorization: `Basic ${TOKEN}`,
             "Content-Type": "application/x-www-form-urlencoded"
         }
     });
     const { access_token } = result.data;
     setAsyncKeys("@token", access_token);
+    setAsyncKeys("@userId", result.data.userUserId.toString());
     
     return result;
 };

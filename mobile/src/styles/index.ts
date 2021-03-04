@@ -357,12 +357,12 @@ const theme = StyleSheet.create({
     reviewComment: {
         width: "85%",
         height: 70,
-        marginLeft: 25,
         marginTop: 5,
+        marginBottom: 10,
+        marginLeft: 25,
         borderWidth: 1,
         borderColor: colors.white,
         borderRadius: 10,
-        marginBottom: 10,
         padding: 10
     }
 });

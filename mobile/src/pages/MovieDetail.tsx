@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, ActivityIndicator, ScrollView, Image, TextInput, TouchableOpacity } from "react-native";
-import { createReview, getMovieById } from "../services";
+import { createReview, getMovieById, isAllowedByRole, userId } from "../services";
 import star from "../assets/star.png";
 import Toast from "react-native-tiny-toast";
 import { text, theme } from "../styles";
@@ -22,8 +22,7 @@ const MovieDetail = ({
     const [newUserReview, setNewUserReview] = useState({
         id: 0,
         text: "",
-        // TODO GET USER LOGGED ID
-        userId: 0,
+        userId: userId(),
         movieId: movie.id
     });
     const [loading, setLoading] = useState(false);
@@ -64,7 +63,7 @@ const MovieDetail = ({
                             <Text style = { text.movieDetailSynopsisText }>{movie.synopsis}</Text>
                         </ScrollView>
                     </View>
-                    {/* TODO VERIFY IF USER HAS ADMIN HOLE BEFORE RANDERING */}
+                    {isAllowedByRole(userId()) && 
                     <View style = { theme.movieDetailInputContainer }>
                         <TextInput style = { text.movieReviewInput }
                             placeholder = "Deixe aqui sua avaliação"
@@ -82,20 +81,20 @@ const MovieDetail = ({
                         >
                             <Text style = { text.movieDetailSaveText }>salvar avaliação</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View>}
                     {movie.reviews.length > 0 &&
                     <ScrollView style={theme.movieContainer}>
                         <Text style={text.movieReviewTitle}>Avaliações</Text>
                         {movie.reviews.map(review => (
-                            <>
-                                <View style={theme.reviewContent} key={movie.id+review.id}>
-                                    <Image style={theme.star} source={star} />
-                                    <Text style={text.reviewUserName}>{review.userName}</Text>
+                            <View key = {`reviews${review.id}`}>
+                                <View style = { theme.reviewContent } key = {`content${review.id}`}>
+                                    <Image style = { theme.star } source = {star}/>
+                                    <Text style = { text.reviewUserName }>{review.userName}</Text>
                                 </View>
-                                <View style={theme.reviewComment}>
-                                    <Text style={text.reviewComment}>{review.text}</Text>
-                                </View>
-                            </>
+                                <ScrollView style = { theme.reviewComment } key = {`comment${review.id}`}>
+                                    <Text style = { text.reviewComment }>{review.text}</Text>
+                                </ScrollView>
+                            </View>
                         ))}
                     </ScrollView>}
                 </View>)

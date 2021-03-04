@@ -5,8 +5,8 @@ import eyesClosed from "../assets/eyes-closed.png";
 import eyesOpened from "../assets/eyes-opened.png";
 import arrow from "../assets/arrow.png";
 import { doLogin } from "../services/auth";
-import { theme, text } from "../styles";
 import Toast from "react-native-tiny-toast";
+import { theme, text } from "../styles";
 
 const Login: React.FC = () => {
     const navigation = useNavigation();
