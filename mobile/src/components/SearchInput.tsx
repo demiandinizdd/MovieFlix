@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, Image, Modal, Text, ActivityIndicator } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { View, Image, Modal, Text, ActivityIndicator, TouchableOpacity } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import filterArrow from "../assets/filter-arrow.png";
 import { getGenres } from "../services";
-import { theme } from "../styles";
+import { text, theme } from "../styles";
 
 interface SearchProps {
     placeholder: string;
@@ -28,31 +28,31 @@ const SearchInput: React.FC<SearchProps> = ({ placeholder, search, setSearch }) 
     }, []);
 
     return (
-        <View>
+        <>
             {loading ? (<ActivityIndicator size="large" />) : (
-            <View>
-                {/* TODO SOLVE BUG WHEN RENDERING MODAL */}
+            <ScrollView>
                 <Modal
-                    visible = {showGenres}
-                    animationType = "fade"
-                    transparent = {true}
-                    presentationStyle = "overFullScreen"
+                    visible={showGenres}
+                    animationType="fade"
+                    transparent={true}
+                    presentationStyle="overFullScreen"
                 >
-                    <View style = { theme.modalContainer }>
-                        <ScrollView contentContainerStyle = { theme.modalContent }> {
+                    <View style={theme.modalContainer}>
+                        <ScrollView contentContainerStyle={theme.modalContent}>{
                             genres.map((gen) => {
                                 const { id, name } = gen
-                                
                                 return (
                                     <TouchableOpacity
-                                        style = { theme.modalItem }
-                                        key = {id}
-                                        onPress = {() => {
-                                            setSearch(name)
-                                            setShowGenres(!showGenres)
+                                        style={theme.modalItem}
+                                        key={id}
+                                        onPress={() => {
+                                            setSearch(name);
+                                            setShowGenres(!showGenres);
                                         }}
                                     >
-                                        <Text>{name}</Text>
+                                        <Text style={text.modalText}>
+                                            {name}
+                                        </Text>
                                     </TouchableOpacity>
                                 )
                             })}
@@ -71,8 +71,8 @@ const SearchInput: React.FC<SearchProps> = ({ placeholder, search, setSearch }) 
                         source = {filterArrow} 
                     />
                 </TouchableOpacity>
-            </View>)}
-        </View>
+            </ScrollView>)}
+        </>
     )
 };
 

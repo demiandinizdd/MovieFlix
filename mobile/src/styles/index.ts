@@ -1,4 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 const colors = {
     white: "#FFF",
@@ -144,6 +147,15 @@ const text = StyleSheet.create({
         fontSize: 16,
         lineHeight: 22,
         fontWeight: "400"
+    },
+    modalText: {
+        marginVertical: 10,
+        marginLeft: 20,
+        textAlign: "justify",
+        color: colors.white,
+        fontSize: 18,
+        lineHeight: 22,
+        fontWeight: "400"
     }
 });
 
@@ -270,18 +282,17 @@ const theme = StyleSheet.create({
     filterIcon: {
     },
     modalContainer: {
-        width: "100%",
-        height: "100%",
+        width: deviceWidth,
+        height: deviceHeight,
         backgroundColor: "#00000033",
-        alignItems: "center",
-        justifyContent: "center"
+        alignItems: "center"
     },
     modalContent: {
         width: 300,
         alignItems: "center",
         justifyContent: "center",
         marginTop: "30%",
-        backgroundColor: colors.white,
+        backgroundColor: colors.mediumGray,
         borderRadius: 20,
         padding: 20,
         shadowColor: colors.black,
@@ -294,10 +305,11 @@ const theme = StyleSheet.create({
         elevation: 5
     },
     modalItem: {
-        width: "100%",
-        backgroundColor: colors.lightGray,
+        width: "90%",
+        backgroundColor: colors.gray,
         padding: 10,
         marginVertical: 5,
+        marginLeft: 10,
         borderRadius: 5
     },
     // Movie Detail
