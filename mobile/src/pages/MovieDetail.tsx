@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, ActivityIndicator, ScrollView, Image, TextInput, TouchableOpacity } from "react-native";
-import { createReview, getMovieById, isAllowedByRole, userId } from "../services";
+import { createReview, getMovieById, userId } from "../services";
+import { isReviewAllowedByRole } from "../services/auth";
 import star from "../assets/star.png";
 import Toast from "react-native-tiny-toast";
 import { text, theme } from "../styles";
@@ -26,6 +27,7 @@ const MovieDetail = ({
         movieId: movie.id
     });
     const [loading, setLoading] = useState(false);
+    var [isReviewAllowed, setIsReviewAllowed] = useState(false);
 
     async function loadMovieData() {
         setLoading(true);
@@ -45,7 +47,17 @@ const MovieDetail = ({
         setLoading(false);
     };
 
+    async function reviewAllowed() {
+        try {
+            setIsReviewAllowed(await isReviewAllowedByRole());
+        } catch(error) {
+            console.log("Error MovieDetail: " + error);
+            setIsReviewAllowed(false);
+        }
+    };
+
     useEffect(() => {
+        reviewAllowed();
         loadMovieData();
     }, []);
     
@@ -63,7 +75,8 @@ const MovieDetail = ({
                             <Text style = { text.movieDetailSynopsisText }>{movie.synopsis}</Text>
                         </ScrollView>
                     </View>
-                    {isAllowedByRole(userId()) && 
+                    {console.log(isReviewAllowed)}
+                    {isReviewAllowed &&
                     <View style = { theme.movieDetailInputContainer }>
                         <TextInput style = { text.movieReviewInput }
                             placeholder = "Deixe aqui sua avaliação"

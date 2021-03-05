@@ -42,7 +42,8 @@ const HeaderTextRight: React.FC = () => {
 
     function logout() {
         doLogout();
-        navigation.navigate("Login");
+        setAuthenticated(false);
+        navigation.navigate("Home");
     };
 
     useEffect(() => {
@@ -51,7 +52,7 @@ const HeaderTextRight: React.FC = () => {
 
     return (
         <View>
-            {(authenticated && (route.name !== "Home"))
+            {(authenticated && (route.name !== "Home")) || (route.name !== "Home")
                 ? (
                     <TouchableOpacity
                         onPress = {() => logout()}

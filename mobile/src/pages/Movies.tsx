@@ -20,7 +20,7 @@ const Movies: React.FC = () => {
         fillMovies();
     }, []);
 
-    // TODO SOLVE FILTERING ERROR IT DOES NOT RETURN MOVIES
+    // TODO SOLVE FILTERING ERROR IT DOES NOT RETURN FILTERED MOVIES
     const data = search.length > 0
     ? movies.filter(
         movie => movie.genre.toString().toLowerCase()

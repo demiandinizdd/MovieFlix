@@ -171,12 +171,12 @@ const theme = StyleSheet.create({
         backgroundColor: colors.gray
     },
     mainImage: {
-        width: 340,
-        height: 262
+        width: "95%",
+        height: "50%"
     },
     textContainer: {},
     primaryButton: {
-        width: 334,
+        width: deviceWidth * 0.8,
         height: 50,
         backgroundColor: colors.primary,
         borderRadius: 10,
@@ -195,8 +195,8 @@ const theme = StyleSheet.create({
     },
     // LoginPage
     loginContainer: {
-        width: "100%",
-        height: "100%",
+        width: deviceWidth,
+        height: "90%",
         paddingHorizontal: 40,
         paddingVertical: 40,
         flex: 1,
@@ -209,7 +209,7 @@ const theme = StyleSheet.create({
     },
     textInput: {
         fontSize: 16,
-        width: 334,
+        width: deviceWidth * 0.8,
         height: 50,
         borderWidth: 1,
         borderColor: colors.borderColor,
@@ -223,18 +223,23 @@ const theme = StyleSheet.create({
         marginVertical: 25
     },
     togle: {
-        margin: -30
+        margin: -40
     },
-    eyes: {},
+    eyes: {
+        width: 30,
+        height: 30,
+        opacity: 0.45
+    },
     // Movie
     scrollContainer: {
         padding: 20,
         backgroundColor: colors.darkGray
     },
     movieContainer: {
-        width: 374,
+        width: "100%",
         backgroundColor: colors.gray,
         borderRadius: 10,
+        marginTop: 10,
         marginBottom: 18
     },
     movieContent: {
@@ -243,7 +248,7 @@ const theme = StyleSheet.create({
     },
     movieImg: {
         marginTop: 18,
-        width: 374,
+        width: "100%",
         height: 227
     },
     movieViewDetails: {
@@ -283,12 +288,12 @@ const theme = StyleSheet.create({
     },
     modalContainer: {
         width: deviceWidth,
-        height: deviceHeight,
+        height: deviceHeight * 0.95,
         backgroundColor: "#00000033",
         alignItems: "center"
     },
     modalContent: {
-        width: 300,
+        width: deviceWidth * 0.8,
         alignItems: "center",
         justifyContent: "center",
         marginTop: "30%",

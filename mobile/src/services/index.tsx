@@ -1,6 +1,5 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import jwtDecode from 'jwt-decode';
 import {decode, encode} from 'base-64';
 
 if (!global.btoa) {
@@ -10,8 +9,6 @@ if (!global.btoa) {
 if (!global.atob) {
     global.atob = decode;
 }
-
-export type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
 
 export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'movieflix';
 export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'movieflix123';
@@ -28,27 +25,14 @@ export const TOKEN = window.btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
 
 export async function userToken() {
     const token = await AsyncStorage.getItem("@token");
-    
+
     return token;
 };
 
 export async function userId() {
     const userId = await AsyncStorage.getItem("@userId");
     
-    return parseInt(userId);
-};
-
-export function isAllowedByRole(userId: number) {
-    // TODO TAKE USER ROLES FROM BACKEND
-    // const authToken = userToken();
-    // const res = api.get(`/movies?direction=ASC&orderBy=title`, {
-    //     headers: {
-    //         Authorization: `Bearer ${authToken}`,
-    //     }
-    // });
- 
-    // return res.some(role => res.includes("ROLE_MEMBER"));
-    return true;
+    return userId ? parseInt(userId) : 0;
 };
 
 export async function getMovies() {

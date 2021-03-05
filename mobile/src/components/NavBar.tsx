@@ -16,8 +16,8 @@ const NavBar: React.FC = () => {
     }
 
     function logout() {
+        navigation.navigate("Home");
         doLogout();
-        navigation.navigate("Login");
     };
 
     useEffect(() => {
@@ -26,10 +26,10 @@ const NavBar: React.FC = () => {
 
     return (
         <View>
-            {(authenticated && (route.name !== "Home") || (route.name !== "Login"))
+            {(authenticated && (route.name !== "Home") || (route.name !== "Home"))
                 ? (
                     <TouchableOpacity
-                        onPress = {() => doLogout()}
+                        onPress = {() => logout()}
                         style = {nav.logoutBtn}
                     >
                         <Text style = {text.logoutText}>SAIR</Text>

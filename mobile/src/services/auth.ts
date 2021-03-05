@@ -1,17 +1,32 @@
-import { api, saveSessionData, TOKEN } from "./index";
-import queryString, { parse } from "query-string";
+import { api, TOKEN } from "./index";
+import queryString from "query-string";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwtDecode from "jwt-decode";
 
 interface AuthProps {
     username: string;
     password: string;
 };
 
+const ReviewAllowedByRole = ['ROLE_MEMBER'];
+
 async function setAsyncKeys(key: string, value: string) {
     try{
         await AsyncStorage.setItem(key, value)
     } catch (e) {
         console.warn(e);
+    }
+};
+
+export async function isReviewAllowedByRole() {
+    try {
+        const allowed = await AsyncStorage.getItem("@isReviewAllowed");
+        
+        return allowed == "true" ? true : false;
+    } catch (e) {
+        console.warn(e);
+        
+        return false;
     }
 };
 
@@ -36,9 +51,17 @@ export async function doLogin(userInfo: AuthProps) {
         }
     });
     const { access_token } = result.data;
+    const tokenDecoded = jwtDecode(access_token ? access_token : "");
+    const isReviewAllowed =
+    (ReviewAllowedByRole.filter(
+        role => String(tokenDecoded.authorities)
+        .includes(role)).length > 0 ?
+        true : false
+    );
     setAsyncKeys("@token", access_token);
     setAsyncKeys("@userId", result.data.userUserId.toString());
-    
+    setAsyncKeys("@isReviewAllowed", isReviewAllowed.toString());
+
     return result;
 };
 
