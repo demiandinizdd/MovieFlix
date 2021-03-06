@@ -51,7 +51,7 @@ const MovieDetail = ({
         try {
             setIsReviewAllowed(await isReviewAllowedByRole());
         } catch(error) {
-            console.log("Error MovieDetail: " + error);
+            console.warn("Error: " + error);
             setIsReviewAllowed(false);
         }
     };
@@ -75,7 +75,6 @@ const MovieDetail = ({
                             <Text style = { text.movieDetailSynopsisText }>{movie.synopsis}</Text>
                         </ScrollView>
                     </View>
-                    {console.log(isReviewAllowed)}
                     {isReviewAllowed &&
                     <View style = { theme.movieDetailInputContainer }>
                         <TextInput style = { text.movieReviewInput }

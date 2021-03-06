@@ -20,7 +20,7 @@ const Login: React.FC = () => {
             setUserFetchData(data);
             navigation.navigate("Movies")})
         .catch((e) => {
-            console.log(e);
+            console.warn(e);
             Toast.show("Erro ao efetuar login.");
         })
     };
