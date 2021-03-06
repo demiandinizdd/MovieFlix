@@ -51,9 +51,7 @@ const Movies: React.FC = () => {
     useEffect(() => {
         console.log("Loading movies");
         loadMovies();
-        console.log("lastSearch: " + lastSearch);
         setLastSearch(search);
-        console.log("search: " + search);
     }, [search]);
     
     return (

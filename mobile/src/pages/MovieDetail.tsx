@@ -23,9 +23,11 @@ const MovieDetail = ({
     const [newUserReview, setNewUserReview] = useState({
         id: 0,
         text: "",
-        userId: userId(),
-        movieId: movie.id
+        userId: 0,
+        movieId: 0
     });
+    const [_userId, setUserId] = useState(0);
+
     const [loading, setLoading] = useState(false);
     var [isReviewAllowed, setIsReviewAllowed] = useState(false);
 
@@ -33,6 +35,7 @@ const MovieDetail = ({
         setLoading(true);
         const res = await getMovieById(id);
         setMovie(res.data);
+        setUserId(await userId());
         setLoading(false);
     };
     
@@ -84,12 +87,17 @@ const MovieDetail = ({
                             onChangeText={(e) => {
                                 const newUserReview = { ...newUserReview };
                                 newUserReview.text = e;
+                                newUserReview.movieId = movie.id;
+                                newUserReview.userId = _userId;
                                 setNewUserReview(newUserReview);
                             }}
                         />
                         <TouchableOpacity
                             style = { theme.btnEvaluation }
-                            onPress = {() => saveReview()}
+                            onPress = {() => {
+                                saveReview();
+                                loadMovieData();
+                            }}
                         >
                             <Text style = { text.movieDetailSaveText }>salvar avaliação</Text>
                         </TouchableOpacity>
