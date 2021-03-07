@@ -156,6 +156,15 @@ const text = StyleSheet.create({
         fontSize: 18,
         lineHeight: 22,
         fontWeight: "400"
+    },
+    modalTextShowAll: {
+        marginVertical: 10,
+        marginLeft: 20,
+        textAlign: "justify",
+        color: colors.black,
+        fontSize: 18,
+        lineHeight: 22,
+        fontWeight: "400",
     }
 });
 
@@ -312,6 +321,14 @@ const theme = StyleSheet.create({
     modalItem: {
         width: "90%",
         backgroundColor: colors.gray,
+        padding: 10,
+        marginVertical: 5,
+        marginLeft: 10,
+        borderRadius: 5
+    },
+    modalItemShowAll: {
+        width: "90%",
+        backgroundColor: colors.primary,
         padding: 10,
         marginVertical: 5,
         marginLeft: 10,

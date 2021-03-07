@@ -3,16 +3,14 @@ import { ScrollView, ActivityIndicator, Modal, View, Text, Image, TouchableOpaci
 import { MovieCard } from "../components";
 import filterArrow from "../assets/filter-arrow.png";
 import { getGenres, getMovies } from "../services";
-import { colors, text, theme } from "../styles";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { text, theme } from "../styles";
 
 const Movies: React.FC = () => {
-    const [lastSearch, setLastSearch] = useState("");
     const [search, setSearch] = useState("");
     const [showGenres, setShowGenres] = useState(false);
     const [genres, setGenres] = useState([]);
     const [loading, setLoading] = useState(false);
-    var [filteredMovies, setFilteredMovies] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState([]);
     
     async function loadGenres() {
         setLoading(true);
@@ -23,44 +21,26 @@ const Movies: React.FC = () => {
 
     async function loadMovies() {
         setLoading(true);
-        setFilteredMovies([]);
         const res = getMovies();
-        // TODO have to reload movies. When calling from 2nd time
-        // setFilteredMovies does not reload movies
-        // So, I have to find a way to solve this bug
-        // for filtering work properly
         setFilteredMovies((await res).data.content);
-        console.log('filteredMovies.length after fetching');
-        console.log(filteredMovies.length);
-        if (search !== "" && (search !== lastSearch)) {
-            console.log("Search");
-            console.log(search);
-            console.log("length Before filtering");
-            console.log(filteredMovies.length);
-            setFilteredMovies(filteredMovies.filter(movie => String(movie.genre.name).includes(search)));
-            console.log("length After filtering");
-            console.log(filteredMovies.length);
+        setLoading(false);
+    }
+
+    async function filterMovies(searchValue: string) {
+        setLoading(true);
+        if (searchValue !== "") {
+            setFilteredMovies(filteredMovies.filter(movie => String(movie.genre.name).includes(searchValue)));
         }
         setLoading(false);
     };
     
     useEffect(() => {
         loadGenres();
-    }, []);
-    
-    useEffect(() => {
-        console.log("Loading movies");
         loadMovies();
-        setLastSearch(search);
-    }, [search]);
-    
+    }, []);
+
     return (
         <>
-            {/* <SearchInput
-                placeholder = "Gênero"
-                search = {search}
-                setSearch = {setSearch}
-            /> */}
             {loading ? (<ActivityIndicator size="large" />) :
             <ScrollView contentContainerStyle = { theme.scrollContainer }>
                 <Modal
@@ -72,15 +52,16 @@ const Movies: React.FC = () => {
                     <View style={theme.modalContainer}>
                         <ScrollView contentContainerStyle={theme.modalContent}>
                             <TouchableOpacity
-                                style={theme.modalItem}
-                                key={"Cancelar filtro"}
+                                style={theme.modalItemShowAll}
+                                key={"Mostrar todos os filmes"}
                                 onPress={() => {
-                                    setSearch(lastSearch);
+                                    setSearch("");
+                                    loadMovies();
                                     setShowGenres(!showGenres);
                                 }}
                             >
-                                <Text style={text.modalText}>
-                                    Cancelar filtro
+                                <Text style={text.modalTextShowAll}>
+                                    Mostrar todos os filmes
                                 </Text>
                             </TouchableOpacity>
                             {genres.map((gen) => {
@@ -91,6 +72,7 @@ const Movies: React.FC = () => {
                                         key={id}
                                         onPress={() => {
                                             setSearch(name);
+                                            filterMovies(name);
                                             setShowGenres(!showGenres);
                                         }}
                                     >
@@ -105,7 +87,10 @@ const Movies: React.FC = () => {
                 </Modal>
                 <TouchableOpacity
                     style = { theme.searchInputContainer }
-                    onPress = {() => setShowGenres(!showGenres)}
+                    onPress = {() => {
+                        if (!showGenres) {loadMovies()};
+                        setShowGenres(!showGenres);
+                    }}
                 >
                     <Text style = { theme.searchInput }>
                         {search ? search : "Gênero"}
