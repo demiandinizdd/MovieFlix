@@ -56,7 +56,7 @@ const Movies: React.FC = () => {
                                 key={"Mostrar todos os filmes"}
                                 onPress={() => {
                                     setSearch("");
-                                    loadMovies();
+                                    // loadMovies();
                                     setShowGenres(!showGenres);
                                 }}
                             >
