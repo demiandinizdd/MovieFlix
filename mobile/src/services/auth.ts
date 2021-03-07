@@ -14,7 +14,7 @@ async function setAsyncKeys(key: string, value: string) {
     try{
         await AsyncStorage.setItem(key, value)
     } catch (e) {
-        console.warn(e);
+        console.log(e);
     }
 };
 
@@ -24,7 +24,7 @@ export async function isReviewAllowedByRole() {
         
         return allowed == "true" ? true : false;
     } catch (e) {
-        console.warn(e);
+        console.log(e);
         
         return false;
     }
@@ -36,7 +36,7 @@ export async function isAuthenticated() {
         
         return token ? true : false;
     } catch (e) {
-        console.warn(e);
+        console.log(e);
         
         return false;
     }
@@ -69,6 +69,6 @@ export async function doLogout() {
     try {
         AsyncStorage.removeItem("@token");
     } catch (e) {
-        console.warn(e);
+        console.log(e);
     }
 };

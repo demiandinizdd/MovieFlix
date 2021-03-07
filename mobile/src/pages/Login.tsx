@@ -6,7 +6,7 @@ import eyesOpened from "../assets/eyes-opened.png";
 import arrow from "../assets/arrow.png";
 import { doLogin } from "../services/auth";
 import Toast from "react-native-tiny-toast";
-import { theme, text, colors } from "../styles";
+import { theme, text } from "../styles";
 
 const Login: React.FC = () => {
     const navigation = useNavigation();
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
             setUserFetchData(data);
             navigation.navigate("Movies")})
         .catch((e) => {
-            console.warn(e);
+            console.log(e);
             Toast.show("Erro ao efetuar login.");
         })
     };

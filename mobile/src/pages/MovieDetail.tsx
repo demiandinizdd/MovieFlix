@@ -44,6 +44,7 @@ const MovieDetail = ({
             setLoading(true),
             await createReview(newUserReview),
             Toast.showSuccess('Obrigado pelo seu Comentário!');
+            await loadMovieData();
         } catch (res) {
             Toast.show('Erro ao enviar seu comentário! Por favor, tente novamente.');
         }
@@ -54,7 +55,7 @@ const MovieDetail = ({
         try {
             setIsReviewAllowed(await isReviewAllowedByRole());
         } catch(error) {
-            console.warn("Error: " + error);
+            console.log("Error: " + error);
             setIsReviewAllowed(false);
         }
     };
@@ -94,10 +95,7 @@ const MovieDetail = ({
                         />
                         <TouchableOpacity
                             style = { theme.btnEvaluation }
-                            onPress = {() => {
-                                saveReview();
-                                loadMovieData();
-                            }}
+                            onPress = {() => saveReview()}
                         >
                             <Text style = { text.movieDetailSaveText }>salvar avaliação</Text>
                         </TouchableOpacity>
