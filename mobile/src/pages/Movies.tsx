@@ -11,6 +11,7 @@ const Movies: React.FC = () => {
     const [genres, setGenres] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filteredMovies, setFilteredMovies] = useState([]);
+    const [allMovies, setAllMovies] = useState([]);
     
     async function loadGenres() {
         setLoading(true);
@@ -23,6 +24,9 @@ const Movies: React.FC = () => {
         setLoading(true);
         const res = getMovies();
         setFilteredMovies((await res).data.content);
+        if (allMovies.length === 0) {
+            setAllMovies((await res).data.content);
+        };
         setLoading(false);
     }
 
@@ -88,7 +92,10 @@ const Movies: React.FC = () => {
                 <TouchableOpacity
                     style = { theme.searchInputContainer }
                     onPress = {() => {
-                        if (!showGenres) {loadMovies()};
+                        if (!showGenres) {
+                            setFilteredMovies(allMovies);
+                            // loadMovies();
+                        };
                         setShowGenres(!showGenres);
                     }}
                 >

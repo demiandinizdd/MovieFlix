@@ -15,14 +15,14 @@ const Login: React.FC = () => {
     const [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
     async function handleLogin() {
-        const data = await doLogin(userInfo)
-        .then(() => {
+        try {
+            const data = await doLogin(userInfo)
             setUserFetchData(data);
-            navigation.navigate("Movies")})
-        .catch((e) => {
-            console.log(e);
+            navigation.navigate("Movies");
+        } catch(error) {
             Toast.show("Erro ao efetuar login.");
-        })
+            console.log("Login error " + error);
+        }
     };
     
     return (
